@@ -1,0 +1,26 @@
+# Claude AI und MCP Server bezogene Dateien
+CLAUDE.md
+logs/
+*.log
+mcp-*
+!_worx/
+
+# Temporäre Dateien
+*_temp.html
+login_temp.html
+
+# IDE und Editor Dateien
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Betriebssystem Dateien
+.DS_Store
+Thumbs.db
+
+# Backup Dateien
+*.bak
+*.backup
+*.old
