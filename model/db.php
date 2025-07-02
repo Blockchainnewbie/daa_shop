@@ -11,15 +11,35 @@ class DB
   private $db_name = "daa_shop";
   
   private $con     = null;
+
+  // SINGLETON  
+  // speicher "DIE EINE" DB Instanz 
+  static public $instance = null;
+  
   
   function __construct()
   {
-	  // Verbindung aufbauen 
-	  $this->con = mysqli_connect(   $this->host    , 
-              									   $this->db_user , 
-              									   $this->db_pass ,
-              									   $this->db_name , 
-              									   $this->port     );
+      // Verbindung aufbauen 
+      $this->con = mysqli_connect(   $this->host    , 
+                                     $this->db_user , 
+                                     $this->db_pass ,
+                                     $this->db_name , 
+                                     $this->port     );
+      echo "<h3> Neue Verbindung .............</h3> \n ";
+  }
+
+  public static function getInstanz()
+  {
+    // wenn es schon eine Instanz gibt >> diese verwenden (zurückgeben)
+    if( DB::$instance != null )
+     {       
+        return DB::$instance;
+     }
+        
+    // die ERSTE Instanz die je von der DB Klasse gemacht wird speichern.
+    DB::$instance = new DB();
+
+    return DB::$instance;
   }
   
 

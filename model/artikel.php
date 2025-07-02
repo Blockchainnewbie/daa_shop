@@ -20,7 +20,7 @@ class Artikel
         }
 
 		// user über ID aus DB lesen und in PHP Variablen schreiben
-		$db  = new DB();
+		$db  = DB::getInstanz();
 		$res = $db->query( "SELECT * FROM artikel 
 									 WHERE deleted = 0 AND  id = ". $id );
 		$row = $db->nextRow( $res );
@@ -45,7 +45,7 @@ class Artikel
 
 	function create()
 	{
-		$db  = new DB();
+		$db  = DB::getInstanz();
 
 		$sql = " INSERT INTO artikel  ( name  , 
 									    beschreibung ,
@@ -62,7 +62,7 @@ class Artikel
 
 	function update()
 	{
-		$db = new DB();
+		$db = DB::getInstanz();
 
 		$sql = "UPDATE artikel SET  name 	      = '". $this->name         ."' ,
 								    beschreibung  = '". $this->beschreibung ."' , 
@@ -98,7 +98,7 @@ class Artikel
 
 	static function getAll()
 	{
-		$db  = new DB();
+		$db  = DB::getInstanz();
 		$sql = "SELECT * FROM artikel WHERE deleted = 0 ";
         $res = $db->query( $sql );
 

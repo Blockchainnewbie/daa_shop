@@ -20,7 +20,7 @@ class User
         }
 
 		// user über ID aus DB lesen und in PHP Variablen schreiben
-		$db  = new DB();
+		$db  = DB::getInstanz();
 		$res = $db->query( "SELECT * FROM user 
 									 WHERE deleted = 0 AND
 									       id = ". $id );
@@ -45,7 +45,7 @@ class User
 
 	function create()
 	{
-		$db  = new DB();
+		$db  = DB::getInstanz();
 
 		$sql = " INSERT INTO user  ( username  , 
 									 password   )  
@@ -59,7 +59,7 @@ class User
 
 	function update()
 	{
-		$db = new DB();
+		$db = DB::getInstanz();
 
 		$sql = "UPDATE user SET  username = '". $this->username ."' ,
 								 password = '". $this->password ."' , 
@@ -93,7 +93,7 @@ class User
 
 	static function getAll()
 	{
-		$db  = new DB();
+		$db  = DB::getInstanz();
 		$sql = "SELECT id FROM user WHERE deleted = 0 ";
         $res = $db->query( $sql );
 
@@ -112,7 +112,7 @@ class User
 
 	static function getUserData( $username , $password  )
 	{
-		$db  = new DB();
+		$db  = DB::getInstanz();
 
 		$sql = "SELECT id FROM  user 
 						  WHERE deleted  = 0 AND 
@@ -138,7 +138,7 @@ class User
 
 	static function checkUserData( $username , $password  )
 	{
-		$db  = new DB();
+		$db  = DB::getInstanz();
 
 		$sql = "SELECT id FROM  user 
 						  WHERE deleted  = 0 AND 

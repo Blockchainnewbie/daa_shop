@@ -19,7 +19,7 @@ class Kategorie
         }
 
 		// user über ID aus DB lesen und in PHP Variablen schreiben
-		$db  = new DB();
+		$db  = DB::getInstanz();
 		$res = $db->query( "SELECT * FROM kategorie 
 									 WHERE deleted = 0 AND  
 									       id      = ". $id );
@@ -44,7 +44,7 @@ class Kategorie
 
 	function create()
 	{
-		$db  = new DB();
+		$db  = DB::getInstanz();
 
 		$sql = " INSERT INTO kategorie  
 		                   (    name              ,   beschreibung                , deleted  )  
@@ -57,7 +57,7 @@ class Kategorie
 
 	function update()
 	{
-		$db  = new DB();
+		$db  = DB::getInstanz();
 
 		$sql = "UPDATE kategorie SET  name 	          = '". $this->name         ."' ,
 								      beschreibung    = '". $this->beschreibung ."' ,  
@@ -91,7 +91,7 @@ class Kategorie
 
 	static function getAll()
 	{
-		$db  = new DB();
+		$db  = DB::getInstanz();
 		$sql = "SELECT * FROM kategorie WHERE deleted = 0 ";
         $res = $db->query( $sql );
 
